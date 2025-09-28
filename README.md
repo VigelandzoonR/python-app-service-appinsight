@@ -25,7 +25,7 @@ fastapi-azure-app/
 
 ### 1.1 Create Resource Group
 ```bash
-az group create --name myResourceGroup --location westeurope
+az group create --name azureMonitoringRGdemoRV --location westeurope
 ```
 
 ### 1.2 Create Application Insights
@@ -33,7 +33,7 @@ az group create --name myResourceGroup --location westeurope
 az monitor app-insights component create \
   --app myFastAPIAppInsights \
   --location westeurope \
-  --resource-group myResourceGroup \
+  --resource-group azureMonitoringRGdemoRV \
   --application-type web
 ```
 
@@ -43,7 +43,7 @@ az monitor app-insights component create \
 ```bash
 az appservice plan create \
   --name myAppServicePlan \
-  --resource-group myResourceGroup \
+  --resource-group azureMonitoringRGdemoRV \
   --location westeurope --sku P1V3 --is-linux \
   --is-linux
 ```
@@ -51,9 +51,9 @@ az appservice plan create \
 ### 1.4 Create Web App
 ```bash
 az webapp create \
-  --resource-group myResourceGroup \
+  --resource-group azureMonitoringRGdemoRV \
   --plan myAppServicePlan \
-  --name myFastAPI2025App \
+  --name pythonfastapiappRV \
   --runtime "PYTHON|3.12" \
   --deployment-local-git
 ```
@@ -64,8 +64,8 @@ Set the Application Insights connection string:
 
 ```bash
 az webapp config appsettings set \
-  --resource-group myResourceGroup \
-  --name myFastAPI2025App \
+  --resource-group azureMonitoringRGdemoRV \
+  --name pythonfastapiappRV \
   --settings APPLICATIONINSIGHTS_CONNECTION_STRING="YOUR_CONNECTION_STRING_HERE" PORT="8000"
 ```
 
@@ -75,8 +75,8 @@ Set the startup command for your FastAPI app:
 
 ```bash
 az webapp config set \
-  --resource-group myResourceGroup \
-  --name myFastAPI2025App \
+  --resource-group azureMonitoringRGdemoRV \
+  --name pythonfastapiappRV \
   --startup-file "python -m uvicorn main:app --host 0.0.0.0 --port 8000"
 ```
 
@@ -85,16 +85,16 @@ az webapp config set \
 1. **Check app status:**
 ```bash
 az webapp show \
-  --name myFastAPI2025App \
-  --resource-group myResourceGroup \
+  --name pythonfastapiappRV \
+  --resource-group azureMonitoringRGdemoRV \
   --query state
 ```
 
 2. **Browse to your app:**
 ```bash
 az webapp browse \
-  --name myFastAPI2025App \
-  --resource-group myResourceGroup
+  --name pythonfastapiappRV \
+  --resource-group azureMonitoringRGdemoRV
 ```
 
 3. **Test endpoints:**
@@ -108,13 +108,13 @@ az webapp browse \
 ```bash
 # Stream logs
 az webapp log tail \
-  --name myFastAPI2025App \
-  --resource-group myResourceGroup
+  --name pythonfastapiappRV \
+  --resource-group azureMonitoringRGdemoRV
 
 # Download logs
 az webapp log download \
-  --name myFastAPI2025App \
-  --resource-group myResourceGroup
+  --name pythonfastapiappRV \
+  --resource-group azureMonitoringRGdemoRV
 ```
 ### Application Insights
 
@@ -151,8 +151,8 @@ exceptions
 ```bash
 # Create autoscale setting
 az monitor autoscale create \
-  --resource-group myResourceGroup \
-  --resource myFastAPI2025App \
+  --resource-group azureMonitoringRGdemoRV \
+  --resource pythonfastapiappRV \
   --resource-type Microsoft.Web/sites \
   --name myAutoscaleProfile \
   --min-count 1 \
@@ -190,18 +190,18 @@ az monitor autoscale create \
 ```bash
 # Check app settings
 az webapp config appsettings list \
-  --name myFastAPI2025App \
-  --resource-group myResourceGroup
+  --name pythonfastapiappRV \
+  --resource-group azureMonitoringRGdemoRV
 
 # Restart app
 az webapp restart \
-  --name myFastAPI2025App \
-  --resource-group myResourceGroup
+  --name pythonfastapiappRV \
+  --resource-group azureMonitoringRGdemoRV
 
 # SSH into container (for troubleshooting)
 az webapp ssh \
-  --name myFastAPI2025App \
-  --resource-group myResourceGroup
+  --name pythonfastapiappRV \
+  --resource-group azureMonitoringRGdemoRV
 ```
 
 
