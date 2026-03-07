@@ -32,7 +32,7 @@ fastapi-azure-app/
 
 !['tags'](images/create_tags_step2.png)
 
--Review your configaration and create your resourcegroup 
+-Review your configuration and create your resourcegroup 
 
 !['create_resourcegroup'](images/create_review_step3.png)
 
@@ -46,7 +46,7 @@ az group create --name azureMonitoringRGdemoRV --location westeurope
 ### Step 2: Create Application Insights for log monitoring 
 #### 2.1 Using Azure portal 
 
-- Define project, instace and workspace detail
+- Define project, instance and workspace detail
 !['create_monitoring_app'](images/create_monitorwebapp_step1.png)
 
 - Define tags to organize your resources 
