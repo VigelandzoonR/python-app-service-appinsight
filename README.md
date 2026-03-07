@@ -21,14 +21,44 @@ fastapi-azure-app/
 └── README.md              # This file
 ```
 
-## Step 1: Create Azure Resources
+## Manual deployment 
+### Step 1: Create Azure Resource group 
+#### 1.1 Using Azure portal 
+- Select subscription and define a name for the resourcegroup and specify the region where to deploy your application. 
 
-### 1.1 Create Resource Group
+!['Resource Groupe'](images/create_resourcegroup_fastapi_step1.png)
+
+- Define tags to organize your resources 
+
+!['tags'](images/create_tags_step2.png)
+
+-Review your configuration and create your resourcegroup 
+
+!['create_resourcegroup'](images/create_review_step3.png)
+
+
+
+#### 1.2 Using AzureCli 
 ```bash
 az group create --name azureMonitoringRGdemoRV --location westeurope
 ```
 
-### 1.2 Create Application Insights
+### Step 2: Create Application Insights for log monitoring 
+#### 2.1 Using Azure portal 
+
+- Define project, instance and workspace detail
+!['create_monitoring_app'](images/create_monitorwebapp_step1.png)
+
+- Define tags to organize your resources 
+!['tags'](images/create_tags_appinsight_step2.png)
+
+- Review your configaration and create your application insight for monitoring
+!['create_monitoringapp'](images/review_appinsight_step3.png)
+
+
+
+
+#### 2.2 Using AzureCli 
 ```bash
 az monitor app-insights component create \
   --app myFastAPIAppInsights \
@@ -39,7 +69,7 @@ az monitor app-insights component create \
 
 **Save the Connection String** from the output - you'll need it later.
 
-### 1.3 Create App Service Plan
+### Step 3: Create App Service Plan
 ```bash
 az appservice plan create \
   --name myAppServicePlan \
@@ -48,7 +78,7 @@ az appservice plan create \
   --is-linux
 ```
 
-### 1.4 Create Web App
+### Step 4: Create Web App
 ```bash
 az webapp create \
   --resource-group azureMonitoringRGdemoRV \
@@ -58,7 +88,7 @@ az webapp create \
   --deployment-local-git
 ```
 
-## Step 2: Configure Environment Variables
+## Step 5: Configure Environment Variables
 
 Set the Application Insights connection string:
 
@@ -69,7 +99,7 @@ az webapp config appsettings set \
   --settings APPLICATIONINSIGHTS_CONNECTION_STRING="YOUR_CONNECTION_STRING_HERE" PORT="8000"
 ```
 
-## Configure Startup Command
+## Step 6: Configure Startup Command
 
 Set the startup command for your FastAPI app:
 
@@ -80,7 +110,7 @@ az webapp config set \
   --startup-file "python -m uvicorn main:app --host 0.0.0.0 --port 8000"
 ```
 
-## Verify Deployment
+## Step 7: Verify Deployment
 
 1. **Check app status:**
 ```bash
