@@ -95,6 +95,25 @@ az appservice plan create \
 ```
 
 ### Step 4: Create Web App
+#### 4.1 Using Azure portal 
+!['create web app'](images/create_webapp_step1.png)
+
+!['manage web app'](images/create_webapp_step2.png)
+
+!['access web app'](images/create_webapp_step3.png)
+
+!['monitor & secure web app'](images/create_webapp_step4png.png)
+
+!['review web app'](images/create_webapp_step5.png)
+
+!['overview web app'](images/create_webapp_step6.png)
+
+
+
+
+
+
+#### 4.2 Using AzureCli 
 ```bash
 az webapp create \
   --resource-group azureMonitoringRGdemoRV \
