@@ -70,6 +70,22 @@ az monitor app-insights component create \
 **Save the Connection String** from the output - you'll need it later.
 
 ### Step 3: Create App Service Plan
+#### 3.1 Using Azure portal 
+
+- Define project, instance and workspace detail
+!['create app serviceplan'](images/create_appservicepln_step1.png)
+
+- Define tags to organize your resources 
+!['create app basic'](images/create_appservicepln_step2.png)
+
+- Review your configaration and create your application insight for monitoring
+!['create app tags'](images/create_appservicePln_step3.png)
+
+!['create app review'](images/create_appservicepln_step4.png)
+
+
+
+#### 3.2 Using AzureCli 
 ```bash
 az appservice plan create \
   --name myAppServicePlan \
