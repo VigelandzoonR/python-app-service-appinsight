@@ -106,7 +106,7 @@ az appservice plan create \
 
 !['review web app'](images/create_webapp_step5.png)
 
-!['overview web app'](images/create_webapp_step6png)
+!['overview web app'](images/create_webapp_step6.png)
 
 
 
